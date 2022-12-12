@@ -3,7 +3,7 @@ use nannou_audio as audio;
 use nannou_audio::Buffer;
 use std::f64::consts::PI;
 
-//OSCILLATOR
+
 
 fn main() {
     nannou::app(model)
@@ -98,32 +98,32 @@ fn view(_app: &App, _model: &Model, frame: Frame,) {
 
     // Prepare to draw.
     let draw = _app.draw();
+    let boundary = _app.window_rect();
+    let mouse = _app.mouse.y;
+    let circle_size = map_range(mouse,boundary.bottom(), boundary.top(), 150.0, 20.0);
 
     draw.background().color(rgba(0.6,0.6,0.6,1.0));
 
     if _app.mouse.buttons.left().is_down() {
-        _model.stream.play().unwrap();
-    } else {
-        _model.stream.pause().unwrap();
-    }
+            _model.stream.play().unwrap();
+        } else {
+            _model.stream.pause().unwrap();
+        }
     
-
-    // Draw a blue ellipse at the x/y coordinates 0.0, 0.0
     if _app.mouse.buttons.left().is_down() {
-    draw.ellipse()
-        .color(rgba(0.5,0.5,0.5,1.0))
-        .w_h(50.0,50.0)
-        .x_y(_app.mouse.x, _app.mouse.y);
-    } else {
         draw.ellipse()
-        .color(rgba(0.2,0.2,0.2,1.0))
-        .w_h(50.0,50.0)
-        .x_y(_app.mouse.x, _app.mouse.y);
-    }
+            .color(rgba(0.6,0.6,0.6,1.0))
+            .w_h(circle_size,circle_size)
+            .x_y(_app.mouse.x, _app.mouse.y);
+        draw.background().color(rgba(0.2,0.2,0.2,1.0));
+        } else {
+            draw.ellipse()
+            .color(rgba(0.2,0.2,0.2,1.0))
+            .w_h(50.0,50.0)
+            .x_y(_app.mouse.x, _app.mouse.y);
+        draw.background().color(rgba(0.6,0.6,0.6,1.0));
+        }
     
-
     draw.to_frame(_app, &frame).unwrap();
-    // let y = _app.mouse.y;
-    // println!("{}",y.to_string());
-
+    
 }
