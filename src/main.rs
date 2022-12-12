@@ -37,6 +37,7 @@ fn model(app: &App) -> Model {
     let model = Audio {
         phase: 0.0,
         hz: 440.0,
+        
     };
 
     let stream = audio_host
