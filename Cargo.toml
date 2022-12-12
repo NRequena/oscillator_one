@@ -1,0 +1,11 @@
+[package]
+name = "oscillator_one"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+nannou = "0.18"
+nannou_osc = "0.18.0"
+nannou_audio = "0.18.0"
